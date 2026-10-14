@@ -1,0 +1,104 @@
+{
+  "description": "Clean run of all 3 desk tickets through the React dashboard, from the original database. All facts are from that run (output/audit_trail.json) and data/campus_customs_new.db.",
+  "reset_at_utc": "2026-10-14T02:41:14+00:00",
+  "shop_date": "2026-08-31",
+  "model": "gpt-6-luna",
+  "starting_checking_balance": 3400.0,
+  "ending_checking_balance": 152.0,
+  "ending_balance_matches_cash_accounts": true,
+  "tickets": [
+    {
+      "ticket_id": 101,
+      "subject": "Bulldog tee (1 x CC-TEE-WHITE, size S) for Tauhid Zaman",
+      "run_id": "7ef5e1d089b0",
+      "final_status": "resolved: both requests approved by a human; tee restock expected about 2026-09-05; customer draft awaits human review",
+      "boss_status_in_db": "waiting_on_approval",
+      "dashboard": "Resolved (team run complete) - Approved by you",
+      "outcome": "Tee was out of stock (0 of 1) and Bulldog Print Co was blocked by overdue invoice 501. The team requested payment of the $840 invoice and an $8 PO for one tee; both were approved by a human, so the vendor is unblocked and the tee is expected about 2026-09-05. Customer reply saved as draft #1 (not sent).",
+      "agent_contributions": {
+        "boss": "Read the board, routed the ticket to Inventory, asked Accounting for a restock PO as a new subtask, asked Customer Service for the reply, and set the status to waiting_on_approval.",
+        "inventory": "Found 0 of 1 in stock, matched the tee to Bulldog Print Co by specialty (5-day lead time), found invoice 501 blocking shipment, and handed the invoice to Accounting.",
+        "accounting": "Confirmed invoice 501 ($840, 3 days overdue) and cash, then created request #1 (invoice payment) and request #2 (PO, 1 tee at $8 unit cost).",
+        "customer_service": "Saved draft #1 to Tauhid Zaman: out of stock, about 2026-09-05 as an estimate only, asks whether to wait. Not sent."
+      },
+      "human_approvals": [
+        {
+          "request_id": 1,
+          "kind": "invoice",
+          "amount": 840.0,
+          "requested_by": "accounting",
+          "decision": "approved",
+          "decided_by": "Luis Patino",
+          "payment_id": 1,
+          "paid_at_shop_date": "2026-08-31",
+          "effect": "Invoice 501 marked paid; Bulldog Print Co can ship again. Checking $3,400.00 -> $2,560.00."
+        },
+        {
+          "request_id": 2,
+          "kind": "purchase_order",
+          "amount": 8.0,
+          "requested_by": "accounting",
+          "decision": "approved",
+          "decided_by": "Luis Patino",
+          "payment_id": 2,
+          "paid_at_shop_date": "2026-08-31",
+          "effect": "Restock order for 1 x CC-TEE-WHITE S placed; expected arrival 2026-09-05. Checking $2,560.00 -> $2,552.00."
+        }
+      ],
+      "cash_change": -848.0,
+      "customer_draft_ids": [
+        1
+      ]
+    },
+    {
+      "ticket_id": 102,
+      "subject": "Rent due - lease 1, Chapel Street shop (Elm City Properties)",
+      "run_id": "1b478145ae7d",
+      "final_status": "resolved: rent paid after human approval; next rent due 2026-10-02",
+      "boss_status_in_db": "waiting_on_approval",
+      "dashboard": "Resolved (team run complete) - Approved by you",
+      "outcome": "Confirmed $2,400 rent due 2026-09-02 from the lease table. Accounting requested the rent payment, a human approved it, and the lease's next due date moved to 2026-10-02. No message to the landlord.",
+      "agent_contributions": {
+        "boss": "Routed the ticket to Facilities and set the status to waiting_on_approval. (Its report listed handled_by as boss and facilities only, leaving out Accounting.)",
+        "facilities": "Looked up lease 1 (Chapel Street shop, Elm City Properties, $2,400 due in 2 days) and handed the payment to Accounting. Also made one redundant cash check.",
+        "accounting": "Checked cash ($2,552, nothing pending) and created request #3 (rent, $2,400), which would leave $152."
+      },
+      "human_approvals": [
+        {
+          "request_id": 3,
+          "kind": "rent",
+          "amount": 2400.0,
+          "requested_by": "accounting",
+          "decision": "approved",
+          "decided_by": "Luis Patino",
+          "payment_id": 3,
+          "paid_at_shop_date": "2026-08-31",
+          "effect": "Rent paid; lease 1 next_due -> 2026-10-02. Checking $2,552.00 -> $152.00."
+        }
+      ],
+      "cash_change": -2400.0,
+      "customer_draft_ids": []
+    },
+    {
+      "ticket_id": 103,
+      "subject": "Bulk hoodie discount - 20 x CC-HOOD-NAVY, size M, for Yale AI Club",
+      "run_id": "f6745292c571",
+      "final_status": "resolved for the team: offer and option drafted; waiting on the customer's reply (no approvals were needed)",
+      "boss_status_in_db": "in_progress",
+      "dashboard": "Resolved (team run complete) - Boss status in_progress",
+      "outcome": "8 of 20 in stock (12 short). Restocking 12 would cost $264 against $152 in checking, so no PO was requested. The Boss offered $55 each ($3 off list, $33 margin per unit) and partial fulfillment (8 now, 12 later) as an option. Reply saved as draft #2 (not sent). The ticket stays in_progress, waiting on the club's answer and the $112 funding gap.",
+      "agent_contributions": {
+        "boss": "Sent separate tasks to Inventory and Accounting, chose a $55 bulk price, asked Customer Service for the reply, and set the status to in_progress (not blocked).",
+        "inventory": "Found 8 of 20 on hand (short 12). Bulldog Print Co can ship now that invoice 501 is paid; 5-day lead time.",
+        "accounting": "Laid out the economics: $58 list, $22 cost/break-even, $36 margin (62.1%). Restocking 12 = $264 vs. $152 checking, a $112 shortfall. Created no request.",
+        "customer_service": "Saved draft #2 to Yale AI Club: $55 each, 8 available now, the other 12 only if restock is approved; partial fulfillment offered for consideration. Not sent."
+      },
+      "human_approvals": [],
+      "cash_change": 0.0,
+      "customer_draft_ids": [
+        2
+      ]
+    }
+  ],
+  "note_on_status": "boss_status_in_db is the Boss's last update_ticket call, made before the human approvals. Approving a request does not change the ticket's status, so 101 and 102 still read waiting_on_approval even though their approvals were granted."
+}
